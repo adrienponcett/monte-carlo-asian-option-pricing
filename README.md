@@ -45,7 +45,7 @@ $$
 The simulation is carried out in **log-space**: the multiplicative price
 dynamics become additive on the log-price, so a full trajectory is obtained by
 a cumulative sum of independent Gaussian increments, then a single
-exponentiation. This keeps the code fully vectorised (an `N × m` matrix, no
+exponentiation. This keeps the code fully vectorised (an `N x m` matrix, no
 Python loops).
 
 A subtlety worth stating explicitly: the **increments** are independent, but the
@@ -64,7 +64,7 @@ $$
 
 **Why the Asian is cheaper than the European.** With identical parameters, the
 Asian call is worth **less** than the European call. The reason is *variance
-reduction*, not payoff convexity: the average `S̄` is mechanically less
+reduction*, not payoff convexity: the average `S-bar` is mechanically less
 dispersed than the terminal price `S_T` (correlated points, some at earlier and
 lower-variance times). Since a call has positive vega — its convex payoff caps
 losses at zero while keeping unlimited upside — lower effective volatility means
@@ -95,26 +95,26 @@ is demonstrated three complementary ways in a single figure:
   error: it plots the *estimator* of the standard error, `sigma_payoff / sqrt(N)`,
   which predicts the estimator's own dispersion. Being an averaged, near-analytic
   quantity, it is **smooth** and follows the `1/sqrt(N)` law cleanly
-  (fitted slope ≈ −0.48).
+  (fitted slope ~ -0.48).
 
 - **Method 2 — measured error vs a high-resolution reference (middle).** Here a
-  real error `|price_N − price_ref|` is measured against a pseudo-truth obtained
+  real error `|price_N - price_ref|` is measured against a pseudo-truth obtained
   at very large `N`. Being a single random realisation per `N`, this curve
-  **fluctuates** around the `1/sqrt(N)` line (fitted slope ≈ −0.50). The
+  **fluctuates** around the `1/sqrt(N)` line (fitted slope ~ -0.50). The
   contrast with Method 1 is intentional and instructive: one curve is a smooth
   *prediction* of precision, the other a noisy *measurement* of the error
   actually committed — two independent views of the same convergence law.
 
 - **Method 3 — price convergence with 95% confidence bands (right, linear
-  scale).** The Monte Carlo price is shown with shrinking `±1.96·SE` bands that
+  scale).** The Monte Carlo price is shown with shrinking `+/- 1.96*SE` bands that
   narrow towards the reference as `N` grows. Every point stays consistent with
   the reference inside its confidence interval, so convergence is not only
   visual but statistically valid.
 
 Two implementation notes behind these figures:
 
-- **Reference price capped at `N = 2×10⁶`.** An `(N × 252)` float64 path matrix
-  at `N = 10⁷` would require ~19 GB of RAM. `2×10⁶` already yields a reference
+- **Reference price capped at `N = 2e6`.** An `(N x 252)` float64 path matrix
+  at `N = 1e7` would require ~19 GB of RAM. `2e6` already yields a reference
   far more precise than the tested estimates, making it a sufficient
   pseudo-truth within the memory budget. (Reaching larger `N` would require
   batching the simulation.)
@@ -127,16 +127,18 @@ Two implementation notes behind these figures:
 ## Usage
 
 ```bash
-python asian_call_pricing_github_project.py
+pip install -r requirements.txt
+python Asian_Call_Pricing_GitHub_Project.py
 ```
 
-Requires `numpy` and `matplotlib`. Running the script prices the Asian call,
-prints the consistency check against the European price, and generates the
-three-panel convergence figure `convergence_three_panels.png`.
+Running the script prices the Asian call, prints the consistency check against
+the European price, and generates the three-panel convergence figure
+`convergence_three_panels.png`.
 
 ## Files
 
-- `asian_call_pricing_github_project.py` — path simulation, Asian pricing,
+- `Asian_Call_Pricing_GitHub_Project.py` — path simulation, Asian pricing,
   numerical validation, and the convergence study.
 - `convergence_three_panels.png` — three-panel convergence figure.
+- `requirements.txt` — Python dependencies (`numpy`, `scipy`, `matplotlib`).
 - `README.md` — this file.
