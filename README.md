@@ -23,11 +23,7 @@ just convenient here — it is the natural pricing method.
 
 **Payoff.** The arithmetic Asian call pays, at maturity `T`:
 
-$$
-\text{payoff} = \max\!\left(\bar{S} - K,\ 0\right),
-\qquad
-\bar{S} = \frac{1}{m}\sum_{i=1}^{m} S_{t_i}
-$$
+$$\text{payoff} = \max\left(\bar{S} - K,\ 0\right), \qquad \bar{S} = \frac{1}{m}\sum_{i=1}^{m} S_{t_i}$$
 
 where the average is taken over the `m` fixing dates `t_1, ..., t_m`. The initial
 price `S_0` is known and non-random, so it is **not** a fixing date and is
@@ -36,11 +32,7 @@ excluded from the average.
 **Path simulation.** Under the risk-neutral measure, the underlying follows a
 Geometric Brownian Motion, simulated step by step over `dt = T/m`:
 
-$$
-S_{t_{i+1}} = S_{t_i}\,\exp\!\left(\left(r - \tfrac{1}{2}\sigma^2\right)\Delta t
-+ \sigma\sqrt{\Delta t}\,Z_{i+1}\right),
-\qquad Z_i \sim \mathcal{N}(0,1)
-$$
+$$S_{t_{i+1}} = S_{t_i}\exp\left(\left(r - \tfrac{1}{2}\sigma^2\right)\Delta t + \sigma\sqrt{\Delta t}\ Z_{i+1}\right), \qquad Z_i \sim \mathcal{N}(0,1)$$
 
 The simulation is carried out in **log-space**: the multiplicative price
 dynamics become additive on the log-price, so a full trajectory is obtained by
@@ -58,9 +50,7 @@ need to simulate the entire trajectory rather than a single terminal draw.
 of the payoffs converges to the risk-neutral expectation, which is the option
 price:
 
-$$
-C = e^{-rT}\,\mathbb{E}^{\mathbb{Q}}\!\left[\max\!\left(\bar{S} - K,\ 0\right)\right]
-$$
+$$C = e^{-rT}\ \mathbb{E}^{\mathbb{Q}}\left[\max\left(\bar{S} - K,\ 0\right)\right]$$
 
 **Why the Asian is cheaper than the European.** With identical parameters, the
 Asian call is worth **less** than the European call. The reason is *variance
@@ -142,3 +132,4 @@ the European price, and generates the three-panel convergence figure
 - `convergence_three_panels.png` — three-panel convergence figure.
 - `requirements.txt` — Python dependencies (`numpy`, `scipy`, `matplotlib`).
 - `README.md` — this file.
+
