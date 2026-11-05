@@ -128,8 +128,8 @@ the European price, and generates the three-panel convergence figure
 
 ## Files
 
-- `Asian_Call_Pricing_GitHub_Project.py` — path simulation, Asian pricing,
+- `Asian_Call_Pricing_GitHub_Project.py` - path simulation, Asian pricing,
   numerical validation, and the convergence study.
-- `convergence_three_panels.png` — three-panel convergence figure.
-- `requirements.txt` — Python dependencies (`numpy`, `scipy`, `matplotlib`).
-- `README.md` — this file.
+- `convergence_three_panels.png` - three-panel convergence figure.
+- `requirements.txt` - Python dependencies (`numpy`, `scipy`, `matplotlib`).
+- `README.md` - this file.
