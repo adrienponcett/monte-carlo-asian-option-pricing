@@ -17,7 +17,7 @@ against financial intuition and through a detailed convergence analysis.
 A key point motivating the whole project: **the arithmetic Asian option has no
 closed-form price.** The arithmetic average of log-normal variables is not
 itself log-normal, so no Black–Scholes-style formula exists. Monte Carlo is not
-just convenient here — it is the natural pricing method.
+just convenient here - it is the natural pricing method.
 
 ## Theory in brief
 
@@ -43,7 +43,7 @@ Python loops).
 A subtlety worth stating explicitly: the **increments** are independent, but the
 **prices** across dates are **correlated**, because each price is built on top
 of the previous one and shares the whole common history of the path. It is
-precisely this temporal dependence that the Asian payoff samples — hence the
+precisely this temporal dependence that the Asian payoff samples - hence the
 need to simulate the entire trajectory rather than a single terminal draw.
 
 **Risk-neutral price.** By the law of large numbers, the discounted sample mean
@@ -56,8 +56,8 @@ $$C = e^{-rT}\ \mathbb{E}^{\mathbb{Q}}\left[\max\left(\bar{S} - K,\ 0\right)\rig
 Asian call is worth **less** than the European call. The reason is *variance
 reduction*, not payoff convexity: the average $\bar{S}$ is mechanically less
 dispersed than the terminal price $S_T$ (correlated points, some at earlier and
-lower-variance times). Since a call has positive vega — its convex payoff caps
-losses at zero while keeping unlimited upside — lower effective volatility means
+lower-variance times). Since a call has positive vega - its convex payoff caps
+losses at zero while keeping unlimited upside - lower effective volatility means
 a lower price. This is a clean consistency test the code verifies numerically.
 
 ## Results
@@ -94,7 +94,7 @@ is demonstrated three complementary ways in a single figure:
   **fluctuates** around the $1/\sqrt{N}$ line (fitted slope ~ −0.50). The
   contrast with Method 1 is intentional and instructive: one curve is a smooth
   *prediction* of precision, the other a noisy *measurement* of the error
-  actually committed — two independent views of the same convergence law.
+  actually committed - two independent views of the same convergence law.
 
 - **Method 3 — price convergence with 95% confidence bands (right, linear
   scale).** The Monte Carlo price is shown with shrinking $\pm 1.96\,\mathrm{SE}$
