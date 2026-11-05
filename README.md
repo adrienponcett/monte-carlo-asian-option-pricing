@@ -9,7 +9,7 @@ check against the European price, and a three-panel convergence study.
 An **Asian option** has a payoff that depends on the **average** price of the
 underlying over the life of the contract, not on the terminal price alone.
 This single change has a deep consequence: unlike a European option, the Asian
-payoff cannot be evaluated from the terminal value $S_T$ — it requires the
+payoff cannot be evaluated from the terminal value $S_T$ - it requires the
 **entire price path**. This project simulates full Geometric Brownian Motion
 trajectories, prices the option by Monte Carlo, and validates the result both
 against financial intuition and through a detailed convergence analysis.
